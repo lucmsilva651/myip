@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+	<head>
+	    <meta charset="UTF-8">
+    	<script type="text/javascript">
+    		function googleTranslateElementInit() {
+				new google.translate.TranslateElement({ pageLanguage: 'pt-BR' }, 'google_translate_element');
+			}
+    	</script>
+    	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    	<meta http-equiv="Pragma" content="no-cache"/>
+    	<meta http-equiv="Expires" content="0"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<title>lucmsilva - MyIP</title>
+    	<meta property="og:title" content="Lucas Gabriel (lucmsilva) - MyIP">
+    	<meta property="og:description" content="Veja seu IP">
+    	<meta property="og:url" content="https://lucmsilva651.github.io/myip">
+    	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    	<link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+    	<nav>
+    		<div id="google_translate_element"></div>
+    	</nav>
+    	<hr>
+  	</head>
+	<body>
+    	<h1>Lucas Gabriel (lucmsilva) - MyIP</h1>
+    	<button onclick="checkIP()">Clique aqui para ver seu endereço IP</button>
+    	<script type="text/javascript">
+    		function checkIP() {
+    			function getIP(json) {
+        			var ip = json.ip;
+        			alert("Seu endereço IP é: " + ip);
+        		}
+        		function makeHttpObject() {
+          			try { return new XMLHttpRequest(); }
+          			catch (error) {}
+          			try { return new ActiveXObject("Msxml2.XMLHTTP"); }
+          			catch (error) {}
+          			try { return new ActiveXObject("Microsoft.XMLHTTP"); }
+          			catch (error) {}
+          			throw new Error("Não foi possível criar um objeto de solicitação HTTP.");
+        		}
+        		var request = makeHttpObject();
+        		request.open("GET", "https://api.ipify.org?format=json", true);
+        		request.send(null);
+        		request.onreadystatechange = function() {
+          		if (request.readyState == 4 && request.status == 200)
+            	getIP(JSON.parse(request.responseText));
+        		}
+			}
+    	</script>
+        <footer>
+            <hr>
+            <p><b><script>document.write(new Date().getFullYear())</script> - Desenvolvido por Lucas Gabriel (lucmsilva)</b></p>
+            <p><a href="http://lucmsilva651.github.io/index.html"><button>Voltar à página inicial</button></a></p>
+        </footer>
+  	</body>
+</html>

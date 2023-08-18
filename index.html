@@ -17,7 +17,12 @@
         </header>
 		<div class="mainName">
 			<h1>MyIP</h1>
-			<button onclick="checkIP()">Click here to see your IP address</button>
+			<p>Check your public IP.</p>
+			<div class="buttonFrame">
+				<button onclick="checkIP()">Click here to see your IP address</button>
+				<br>
+				<a onclick="location='https://github.com/lucmsilva651/myip'"><button>GitHub source code</button></a>
+			</div>
 			<script type="text/javascript">
 				function checkIP() {
 					function getIP(json) {

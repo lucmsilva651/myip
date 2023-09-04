@@ -1,35 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>lucmsilva - MyIP</title>
-    <style id="theme-styles"></style>
-    <script src="../scripts/changeTheme.js"></script>
-	<link rel="stylesheet" href="../styles/style.css">
-	<link rel="shortcut icon" href="../files/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Página inicial</title>
+    <link rel="preconnect" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="//lucmsilva.vercel.app/styles/style.css">
+    <link rel="stylesheet" href="//lucmsilva.vercel.app/styles/scrollbar.css">
 </head>
 <body>
-	<center>
-		<header>
-            <div class="topBarFrame">
-                <a onclick="location='../'"><button>Home</button></a> <a onclick="location='../projects/'"><button>My projects</button></a> <a onclick="location='../links/'"><button>My social media</button></a>
-                <hr>
+    <center>
+        <header>
+            <div class="container">
+                <button class="button" onclick="location='//lucmsilva.vercel.app'">
+                    <i class="material-icons">home</i>
+                    <a>Página inicial</a>
+                </button>
+                <button class="button" onclick="location='//lucmsilva.vercel.app/projects/'">
+                    <i class="material-icons">favorite</i>
+                    <a>Meus projetos</a>
+                </button>
+                <button class="button" onclick="location='//lucmsilva.vercel.app/links'">
+                    <i class="material-icons">person</i>
+                    <a>Sobre mim</a>
+                </button>
             </div>
+            <hr>
         </header>
-		<div class="mainName">
+        <div class="main-content">
 			<h1>MyIP</h1>
 			<p>Check your public IP.</p>
-			<div class="buttonFrame">
-				<button onclick="checkIP()">Click here to see your IP address</button>
+			<div class="button-content">
+				<button onclick="checkIP()">Clique aqui para ver seu endereço IP</button>
 				<br>
-				<a onclick="location='https://github.com/lucmsilva651/myip'"><button>GitHub source code</button></a>
+				<a onclick="location='https://github.com/lucmsilva651/myip'"><button>Código fonte (GitHub)</button></a>
 			</div>
 			<script type="text/javascript">
 				function checkIP() {
 					function getIP(json) {
 						var ip = json.ip;
-						alert("Your IP address is: " + ip + "\n\nDeveloped by Lucas Gabriel (lucmsilva)\nhttps://lucmsilva651.github.io");
+						alert("Seu endereço IP é: " + ip + "\n\nDesenvolvido por Lucas Gabriel (lucmsilva)\nhttps://lucmsilva.vercel.app");
 					}
 					function makeHttpObject() {
 						try { return new XMLHttpRequest(); }
@@ -38,7 +51,7 @@
 						catch (error) {}
 						try { return new ActiveXObject("Microsoft.XMLHTTP"); }
 						catch (error) {}
-						throw new Error("An HTTP request object could not be created.");
+						throw new Error("Erro");
 					}
 					var request = makeHttpObject();
 					request.open("GET", "https://api.ipify.org?format=json", true);
@@ -50,15 +63,12 @@
 				}
 			</script>
 		</div>
-		<footer>
-            <div class="downBarFrame">
+        <footer>
+            <div class="footer-content">
                 <hr>
-                <p>2023 - Lucas Gabriel (lucmsilva). All rights reserved.</p>
-				<div class="downBarLinksFrame">
-                    <p><a onclick="location='https://www.youtube.com/c/lucmsilva651'">YouTube</a> | <a onclick="location='https://fb.me/lucmsilva'">Facebook</a> | <a onclick="location='https://telegram.me/lucmsilva'">Telegram</a></p>
-                </div>
+                <p>2023 - Lucas Gabriel (lucmsilva). Todos os direitos reservados.</p>
             </div>
         </footer>
-	</center>
+    </center>
 </body>
 </html>

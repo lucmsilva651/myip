@@ -20,17 +20,17 @@
     </div>
     <div class="body">
         <h1>MyIP</h1>
-        <p>Veja seu IP.</p>
+        <p>Check your IP address.</p>
         <div class="button">
-            <button onclick="checkIP()">Clique aqui para ver seu endereço IP</button>
+            <button onclick="checkIP()">Click here to view your IP address</button>
             <br>
-            <a href="https://github.com/lucmsilva651/myip"><button>Código fonte (GitHub)</button></a>
+            <a href="https://github.com/lucmsilva651/myip"><button>Source code (GitHub)</button></a>
         </div>
         <script type="text/javascript">
             function checkIP() {
                 function getIP(json) {
                     var ip = json.ip;
-                    alert("Seu endereço IP é: " + ip + "\n\nDesenvolvido por Lucas Gabriel (lucmsilva)\nhttps://lucmsilva.vercel.app");
+                    alert("Your IP address is: " + ip + "\n\nDeveloped by Lucas Gabriel (lucmsilva)\nhttps://lucmsilva.vercel.app");
                 }
                 function makeHttpObject() {
                     try { return new XMLHttpRequest(); }

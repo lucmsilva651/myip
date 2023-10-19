@@ -4,71 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>MyIP</title>
-    <link rel="preconnect" href="//fonts.googleapis.com">
-    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Roboto&display=swap">
-    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="//lucmsilva.vercel.app/styles/style.css">
-    <link rel="stylesheet" href="//lucmsilva.vercel.app/styles/scrollbar.css">
+    <meta name="title" content="MyIP">
+    <meta name="description" content="Check your IP address.">
+    <meta name="keywords" content="ip checker, ip, ipcheck">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/scroll.css">
+    <script src="/js/axios/axios.min.js"></script>
+    <script src="/js/axios-header/displayHeader.js"></script>
+    <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <center>
-        <header>
-            <div class="container">
-                <button class="button" onclick="location='//lucmsilva.vercel.app'">
-                    <i class="material-icons">home</i>
-                    <a>Página inicial</a>
-                </button>
-                <button class="button" onclick="location='//lucmsilva.vercel.app/projects/'">
-                    <i class="material-icons">favorite</i>
-                    <a>Meus projetos</a>
-                </button>
-                <button class="button" onclick="location='//lucmsilva.vercel.app/links'">
-                    <i class="material-icons">person</i>
-                    <a>Sobre mim</a>
-                </button>
-            </div>
+    <div class="header">
+        <div id="contentContainer"></div>
+    </div>
+    <div class="body">
+        <h1>MyIP</h1>
+        <p>Veja seu IP.</p>
+        <div class="button">
+            <button onclick="checkIP()">Clique aqui para ver seu endereço IP</button>
+            <br>
+            <a href="https://github.com/lucmsilva651/myip"><button>Código fonte (GitHub)</button></a>
+        </div>
+        <script type="text/javascript">
+            function checkIP() {
+                function getIP(json) {
+                    var ip = json.ip;
+                    alert("Seu endereço IP é: " + ip + "\n\nDesenvolvido por Lucas Gabriel (lucmsilva)\nhttps://lucmsilva.vercel.app");
+                }
+                function makeHttpObject() {
+                    try { return new XMLHttpRequest(); }
+                    catch (error) {}
+                    try { return new ActiveXObject("Msxml2.XMLHTTP"); }
+                    catch (error) {}
+                    try { return new ActiveXObject("Microsoft.XMLHTTP"); }
+                    catch (error) {}
+                    throw new Error("Erro");
+                }
+                var request = makeHttpObject();
+                request.open("GET", "https://api.ipify.org?format=json", true);
+                request.send(null);
+                request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200)
+                getIP(JSON.parse(request.responseText));
+                }
+            }
+        </script>
+    </div>
+    <footer>
+        <div class="footer">
             <hr>
-        </header>
-        <div class="main-content">
-			<h1>MyIP</h1>
-			<p>Veja seu IP.</p>
-			<div class="button-content">
-				<button onclick="checkIP()">Clique aqui para ver seu endereço IP</button>
-				<br>
-				<a onclick="location='https://github.com/lucmsilva651/myip'"><button>Código fonte (GitHub)</button></a>
-			</div>
-			<script type="text/javascript">
-				function checkIP() {
-					function getIP(json) {
-						var ip = json.ip;
-						alert("Seu endereço IP é: " + ip + "\n\nDesenvolvido por Lucas Gabriel (lucmsilva)\nhttps://lucmsilva.vercel.app");
-					}
-					function makeHttpObject() {
-						try { return new XMLHttpRequest(); }
-						catch (error) {}
-						try { return new ActiveXObject("Msxml2.XMLHTTP"); }
-						catch (error) {}
-						try { return new ActiveXObject("Microsoft.XMLHTTP"); }
-						catch (error) {}
-						throw new Error("Erro");
-					}
-					var request = makeHttpObject();
-					request.open("GET", "https://api.ipify.org?format=json", true);
-					request.send(null);
-					request.onreadystatechange = function() {
-					if (request.readyState == 4 && request.status == 200)
-					getIP(JSON.parse(request.responseText));
-					}
-				}
-			</script>
-		</div>
-        <footer>
-            <div class="footer-content">
-                <hr>
-                <p>2023 - Lucas Gabriel (lucmsilva). Todos os direitos reservados.</p>
-            </div>
-        </footer>
-    </center>
+            <p>2023 - Lucas Gabriel (lucmsilva). Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>

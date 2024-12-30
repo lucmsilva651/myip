@@ -1,60 +1,204 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>MyIP</title>
-    <meta name="title" content="MyIP">
-    <meta name="description" content="Check your IP address.">
-    <meta name="keywords" content="ip checker, ip, ipcheck">
-    <meta name="robots" content="index, follow">
-    <link rel="stylesheet" href="https://lucmsilva651.github.io/website-files/styles/main.css">
-    <link rel="stylesheet" href="https://lucmsilva651.github.io/website-files/styles/scroll.css">
-    <script src="https://lucmsilva651.github.io/website-files/js/axios/axios.min.js"></script>
-    <script src="https://lucmsilva651.github.io/website-files/js/axios-header/displayHeader.js"></script>
-    <link rel="shortcut icon" href="https://lucmsilva651.github.io/website-files/favicon/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="MyIP - Check your IP address" />
+  <meta name="description" content="This tool shows some info about your IP, geo-location, and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://myip.lucmsilva.com" />
+  <meta property="og:title" content="MyIP - Check your IP address" />
+  <meta property="og:description" content="This tool shows some info about your IP, geo-location, and more." />
+  <meta property="twitter:url" content="https://myip.lucmsilva.com" />
+  <meta property="twitter:title" content="MyIP - Check your IP address" />
+  <meta property="twitter:description" content="This tool shows some info about your IP, geo-location, and more." />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js" integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/header.css">
+  <script src="javascript/index.js" type="module"></script>
+  <title>MyIP | lucmsilva's Website</title>
 </head>
 <body>
-    <div class="header">
-        <div id="contentContainer"></div>
-    </div>
-    <div class="body">
-        <h1>MyIP</h1>
-        <p>Check your IP address.</p>
-        <div class="button">
-            <button onclick="checkIP()">Click here to view your IP address</button>
-            <br>
-            <a href="https://github.com/lucmsilva651/myip"><button>Source code (GitHub)</button></a>
+  <div class="navbar-fixed">
+    <nav class="header">
+      <div class="nav-wrapper container">
+        <a href="https://www.lucmsilva.com/" class="brand-logo">lucmsilva</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-icons">
+            <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path>
+          </svg>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li class="nav-item">
+            <a href="https://www.lucmsilva.com/#home">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-icons">
+                <path d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://www.lucmsilva.com/#projects">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-icons">
+                <path d="M5.433 2.304A4.492 4.492 0 0 0 3.5 6c0 1.598.832 3.002 2.09 3.802.518.328.929.923.902 1.64v.008l-.164 3.337a.75.75 0 1 1-1.498-.073l.163-3.33c.002-.085-.05-.216-.207-.316A5.996 5.996 0 0 1 2 6a5.993 5.993 0 0 1 2.567-4.92 1.482 1.482 0 0 1 1.673-.04c.462.296.76.827.76 1.423v2.82c0 .082.041.16.11.206l.75.51a.25.25 0 0 0 .28 0l.75-.51A.249.249 0 0 0 9 5.282V2.463c0-.596.298-1.127.76-1.423a1.482 1.482 0 0 1 1.673.04A5.993 5.993 0 0 1 14 6a5.996 5.996 0 0 1-2.786 5.068c-.157.1-.209.23-.207.315l.163 3.33a.752.752 0 0 1-1.094.714.75.75 0 0 1-.404-.64l-.164-3.345c-.027-.717.384-1.312.902-1.64A4.495 4.495 0 0 0 12.5 6a4.492 4.492 0 0 0-1.933-3.696c-.024.017-.067.067-.067.16v2.818a1.75 1.75 0 0 1-.767 1.448l-.75.51a1.75 1.75 0 0 1-1.966 0l-.75-.51A1.75 1.75 0 0 1 5.5 5.282V2.463c0-.092-.043-.142-.067-.159Z"></path>
+              </svg>
+              Projects
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://www.lucmsilva.com/#social">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-icons">
+                <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
+              </svg>
+              Social media
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://www.lucmsilva.com/#donate">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-icons">
+                <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
+              </svg>
+              Donate
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <ul class="sidenav" id="mobile-demo">
+    <li class="nav-item">
+      <a href="https://www.lucmsilva.com/#home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-black-icons">
+          <path d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path>
+        </svg>
+        Home
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="https://www.lucmsilva.com/#projects">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-black-icons">
+          <path d="M5.433 2.304A4.492 4.492 0 0 0 3.5 6c0 1.598.832 3.002 2.09 3.802.518.328.929.923.902 1.64v.008l-.164 3.337a.75.75 0 1 1-1.498-.073l.163-3.33c.002-.085-.05-.216-.207-.316A5.996 5.996 0 0 1 2 6a5.993 5.993 0 0 1 2.567-4.92 1.482 1.482 0 0 1 1.673-.04c.462.296.76.827.76 1.423v2.82c0 .082.041.16.11.206l.75.51a.25.25 0 0 0 .28 0l.75-.51A.249.249 0 0 0 9 5.282V2.463c0-.596.298-1.127.76-1.423a1.482 1.482 0 0 1 1.673.04A5.993 5.993 0 0 1 14 6a5.996 5.996 0 0 1-2.786 5.068c-.157.1-.209.23-.207.315l.163 3.33a.752.752 0 0 1-1.094.714.75.75 0 0 1-.404-.64l-.164-3.345c-.027-.717.384-1.312.902-1.64A4.495 4.495 0 0 0 12.5 6a4.492 4.492 0 0 0-1.933-3.696c-.024.017-.067.067-.067.16v2.818a1.75 1.75 0 0 1-.767 1.448l-.75.51a1.75 1.75 0 0 1-1.966 0l-.75-.51A1.75 1.75 0 0 1 5.5 5.282V2.463c0-.092-.043-.142-.067-.159Z"></path>
+        </svg>
+        Projects
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="https://www.lucmsilva.com/#social">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-black-icons">
+          <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
+        </svg>
+        Social media
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="https://www.lucmsilva.com/#donate">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-black-icons">
+          <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
+        </svg>
+        Donate
+      </a>
+    </li>
+  </ul>
+  <section class="section">
+    <div class="container" id="ipInfo">
+      <h3 class="bold">MyIP - IP Information</h3>
+      <div class="row">
+        <div class="s12 m12">
+          <div class="card">
+            <div class="card-content">
+              <span class="truncate">Your IP address is:
+                <span class="right">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-white-icons">
+                    <path d="M8.75 8.582v5.668a.75.75 0 0 1-1.5 0V8.582a1.75 1.75 0 1 1 1.5 0Zm3.983-7.125a.75.75 0 0 1 1.06.026A7.976 7.976 0 0 1 16 7c0 2.139-.84 4.083-2.207 5.517a.75.75 0 1 1-1.086-1.034A6.474 6.474 0 0 0 14.5 7a6.474 6.474 0 0 0-1.793-4.483.75.75 0 0 1 .026-1.06Zm-9.466 0c.3.286.312.76.026 1.06A6.474 6.474 0 0 0 1.5 7a6.47 6.47 0 0 0 1.793 4.483.75.75 0 0 1-1.086 1.034A7.973 7.973 0 0 1 0 7c0-2.139.84-4.083 2.207-5.517a.75.75 0 0 1 1.06-.026Zm8.556 2.321A4.988 4.988 0 0 1 13 7a4.988 4.988 0 0 1-1.177 3.222.75.75 0 1 1-1.146-.967A3.487 3.487 0 0 0 11.5 7c0-.86-.309-1.645-.823-2.255a.75.75 0 0 1 1.146-.967Zm-6.492.958A3.48 3.48 0 0 0 4.5 7a3.48 3.48 0 0 0 .823 2.255.75.75 0 0 1-1.146.967A4.981 4.981 0 0 1 3 7a4.982 4.982 0 0 1 1.188-3.236.75.75 0 1 1 1.143.972Z"></path>
+                  </svg>
+                </span>
+              </span>
+              <p class="card-title truncate ip-address">Loading...</p>
+              <p class="truncate">Your location: <span class="ip-location">Loading...</span></p>
+            </div>
+          </div>
         </div>
-        <script type="text/javascript">
-            function checkIP() {
-                function getIP(json) {
-                    var ip = json.ip;
-                    alert("Your IP address is: " + ip + "\n\nDeveloped by Lucas Gabriel (lucmsilva)\nhttps://lucmsilva.vercel.app");
-                }
-                function makeHttpObject() {
-                    try { return new XMLHttpRequest(); }
-                    catch (error) {}
-                    try { return new ActiveXObject("Msxml2.XMLHTTP"); }
-                    catch (error) {}
-                    try { return new ActiveXObject("Microsoft.XMLHTTP"); }
-                    catch (error) {}
-                    throw new Error("Erro");
-                }
-                var request = makeHttpObject();
-                request.open("GET", "https://api.ipify.org?format=json", true);
-                request.send(null);
-                request.onreadystatechange = function() {
-                if (request.readyState == 4 && request.status == 200)
-                getIP(JSON.parse(request.responseText));
-                }
-            }
-        </script>
-    </div>
-    <footer>
-        <div class="footer">
-            <p>2023 - Lucas Gabriel (lucmsilva). All rights reserved.</p>
+        <div class="col s12 m4 left-side">
+          <div class="card">
+            <div class="card-image">
+              <div id="map" style="height: 320px;"></div>
+            </div>
+            <div class="card-content">
+              <p>Your location on the map</p>
+            </div>
+          </div>
         </div>
-    </footer>
+        <div class="col s12 m8 right-side">
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <i class="circle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-white-icons">
+                  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM5.78 8.75a9.64 9.64 0 0 0 1.363 4.177c.255.426.542.832.857 1.215.245-.296.551-.705.857-1.215A9.64 9.64 0 0 0 10.22 8.75Zm4.44-1.5a9.64 9.64 0 0 0-1.363-4.177c-.307-.51-.612-.919-.857-1.215a9.927 9.927 0 0 0-.857 1.215A9.64 9.64 0 0 0 5.78 7.25Zm-5.944 1.5H1.543a6.507 6.507 0 0 0 4.666 5.5c-.123-.181-.24-.365-.352-.552-.715-1.192-1.437-2.874-1.581-4.948Zm-2.733-1.5h2.733c.144-2.074.866-3.756 1.58-4.948.12-.197.237-.381.353-.552a6.507 6.507 0 0 0-4.666 5.5Zm10.181 1.5c-.144 2.074-.866 3.756-1.58 4.948-.12.197-.237.381-.353.552a6.507 6.507 0 0 0 4.666-5.5Zm2.733-1.5a6.507 6.507 0 0 0-4.666-5.5c.123.181.24.365.353.552.714 1.192 1.436 2.874 1.58 4.948Z"></path>
+                </svg>
+              </i>
+              <span class="title"><b>ISP information</b></span>
+              <p class="truncate">Name: <span id="ispName">Loading...</span><br>
+                Organization: <a id="ispOrg">Loading...</a><br>
+                ASN: <a id="ispASN">Loading...</a>
+              </p>
+            </li>
+            <li class="collection-item avatar">
+              <i class="circle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-white-icons">
+                  <path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"></path>
+                </svg>
+              </i>
+              <span class="title"><b>Location information</b></span>
+              <p class="truncate">Location: <span class="ip-location">Loading...</span><br>
+                Latitude: <a id="ipLatitude">Loading...</a><br>
+                Longitude: <a id="ipLongitude">Loading...</a>
+              </p>
+            </li>
+            <li class="collection-item avatar">
+              <i class="circle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-white-icons">
+                  <path d="M2.002 2.725a.75.75 0 0 1 .797-.699C8.79 2.42 13.58 7.21 13.974 13.201a.75.75 0 0 1-1.497.098 10.502 10.502 0 0 0-9.776-9.776.747.747 0 0 1-.7-.798ZM2.84 7.05h-.002a7.002 7.002 0 0 1 6.113 6.111.75.75 0 0 1-1.49.178 5.503 5.503 0 0 0-4.8-4.8.75.75 0 0 1 .179-1.489ZM2 13a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"></path>
+                </svg>
+              </i>
+              <span class="title"><b>Misc information</b></span>
+              <p class="truncate">Timezone: <span id="ipTimezone">Loading...</span><br>
+                Local time: <a id="ipLocalTime">Loading...</a><br>
+                IP risk score: <a id="ipRiskScore">Loading...</a>
+              </p>
+            </li>
+            <li class="collection-item avatar">
+              <i class="circle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="primer-white-icons">
+                  <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575ZM8 5a.75.75 0 0 0-.75.75v2.5a.75.75 0 0 0 1.5 0v-2.5A.75.75 0 0 0 8 5Zm1 6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z"></path>
+                </svg>
+              </i>
+              <span class="title"><b>Risk information</b></span>
+              <p class="truncate">Running on a proxy: <span id="ipIsProxy">Loading...</span><br>
+                Running on a VPN: <span id="ipIsVPN">Loading...</span><br>
+                Running on Tor Network: <span id="ipIsTor">Loading...</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="page-footer">
+    <div class="container">
+      <div class="center">
+        <div class="small-spacing">
+          <p>&copy; 2023-2025 <a href="https://github.com/lucmsilva651" target="_blank" rel="noopener noreferrer">Lucas Gabriel (lucmsilva)</a>. Made with help of the <a href="https://materializecss.com/" target="_blank" rel="noopener noreferrer">Materialize</a> framework.</p>
+          <p>Inspired from the <a href="https://primer.style/" target="_blank" rel="noopener noreferrer">Primer Design System</a>. Icons from <a href="https://primer.style/foundations/icons/" target="_blank" rel="noopener noreferrer">Octicons</a> and <a href="https://fonts.google.com/icons" target="_blank" rel="noopener noreferrer">Material Design</a>.</p>
+          <p><a href="https://github.com/lucmsilva651/myip" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> • <a href="https://github.com/lucmsilva651/last-fm-status/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Licensed under BSD-3-Clause</a></p>
+        </div>
+        <br>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

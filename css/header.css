@@ -1,0 +1,57 @@
+html,
+.header,
+.page-footer {
+  transition: 300ms;
+  background-color: #010409;
+}
+
+.header {
+  border-bottom: solid 1px #3d444d;
+}
+
+.header a {
+  cursor: pointer;
+  transition: 120ms;
+}
+
+.nav-item a:hover {
+  transition: 120ms;
+  color: inherit;
+  background-color: #212830;
+}
+
+.page-footer {
+  border-top: solid 1px #3d444d;
+}
+
+.nav-item a {
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item i {
+  margin-right: 8px;
+}
+
+.primer-icons {
+  filter: invert(63%) sepia(8%) saturate(358%) hue-rotate(174deg) brightness(96%) contrast(80%) !important;
+}
+
+.primer-white-icons {
+  filter: invert(99%) sepia(100%) saturate(2%) hue-rotate(218deg) brightness(104%) contrast(100%) !important;
+}
+
+.primer-black-icons {
+  filter: invert(0%) sepia(0%) saturate(7493%) hue-rotate(135deg) brightness(105%) contrast(96%) !important;
+}

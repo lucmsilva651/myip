@@ -1,0 +1,91 @@
+body,
+button,
+input,
+form,
+.dropdown-content a {
+  font-family: "Barlow", sans-serif;
+  color: #f0f6fc !important;
+}
+
+section,
+.dropdown-content,
+.circle {
+  background-color: #0d1117 !important;
+}
+
+section {
+  margin: -10px 0;
+}
+
+a {
+  color: inherit;
+}
+
+h3 {
+  padding: 0 0 16px;
+}
+
+#ipInfo {
+  padding: 0 0 20px 0;
+}
+
+.card,
+.collection-item,
+.dropdown-content a:hover,
+.dropdown-content li:hover {
+  background-color: #151b23 !important;
+}
+
+.collection-item {
+  border-bottom: solid 1px #3d444d !important;
+}
+
+.card {
+  margin: 0 0 25px !important;
+}
+
+.left-side.col {
+  padding: 0;
+}
+
+.right-side.col {
+  padding: 0;
+}
+
+.right-side .collection {
+  border: none;
+  margin: 0 !important;
+}
+
+.sidenav {
+  width: 250px;
+  padding-top: 15px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.brand-logo {
+  font-size: 1.5rem;
+}
+
+.sidenav {
+  width: 250px;
+  padding-top: 15px;
+}
+
+i {
+  margin: 0;
+  padding-right: 5px;
+}
+
+@media (min-width: 600px) {
+  .left-side.col {
+    padding: 0 10px 0 0;
+  }
+  
+  .right-side.col {
+    padding: 0 0 0 10px;
+  }
+}

@@ -10,6 +10,7 @@ const ipRiskScore = document.getElementById("ipRiskScore");
 const ipIsProxy = document.getElementById("ipIsProxy");
 const ipIsVPN = document.getElementById("ipIsVPN");
 const ipIsTor = document.getElementById("ipIsTor");
+const locationLink = document.getElementById("locationLink");
 
 // multiple use obj
 const ipAddressElem = document.querySelectorAll(".ip-address");
@@ -27,6 +28,7 @@ export async function changeElem(apiData) {
   ipIsProxy.innerText = apiData.risk.is_proxy;
   ipIsVPN.innerText = apiData.risk.is_vpn;
   ipIsTor.innerText = apiData.risk.is_tor;
+  locationLink.href=`https://google.com/maps/place/${apiData.location.latitude}+${apiData.location.longitude}`
 
 
   ipAddressElem.forEach(element => {

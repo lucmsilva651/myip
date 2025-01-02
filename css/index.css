@@ -40,6 +40,14 @@ h3 {
   border-bottom: solid 1px #3d444d !important;
 }
 
+#locationLink{
+  color: white;
+  &:hover{
+    color: blue;
+    transition: color 0.3s;
+  }
+}
+
 .card {
   margin: 0 0 25px !important;
 }

@@ -13,8 +13,8 @@ export async function createMap(api) {
   L.tileLayer('https://{s}.basemaps.cartocdn.com/{style}/{z}/{x}/{y}{scale}.png', {
     attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
     subdomains: 'abcd',
-    style: 'dark_all',
-    scale: '@1x'
+    style: 'white_all',
+    scale: '@3x'
   }).addTo(map);
 
   L.marker([parseFloat(apiLatitude), parseFloat(apiLongitude)]).addTo(map).openPopup();

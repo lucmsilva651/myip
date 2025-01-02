@@ -13,7 +13,7 @@ export async function createMap(api) {
   L.tileLayer('https://{s}.basemaps.cartocdn.com/{style}/{z}/{x}/{y}{scale}.png', {
     attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
     subdomains: 'abcd',
-    style: 'light_all',
+    style: 'rastertiles/voyager',
     scale: '@3x'
   }).addTo(map);
 
